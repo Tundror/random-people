@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import db from "../database/db.connection";
 import { randomNumber } from "../services/randomNumber.services";
+import { QueryResult } from "pg";
 
 export async function getPeople(req: Request, res: Response) {
   try {
@@ -9,8 +10,8 @@ export async function getPeople(req: Request, res: Response) {
 
     const number:number = randomNumber(totalRecords)
 
-    const query = `SELECT * FROM people WHERE id = $1;`;
-    const result = await db.query(query, [number]);
+    const query: string = `SELECT * FROM people WHERE id = $1;`;
+    const result: QueryResult = await db.query(query, [number]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "Registro não encontrado." });

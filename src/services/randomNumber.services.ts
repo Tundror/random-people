@@ -1,6 +1,5 @@
 
 export function randomNumber(number: number){
-    const randomNumber = Math.ceil(Math.random() * number);
-    console.log(randomNumber)
+    const randomNumber:number = Math.ceil(Math.random() * number);
     return randomNumber
 }
